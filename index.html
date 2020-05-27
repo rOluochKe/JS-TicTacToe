@@ -16,15 +16,15 @@
     <main class="container-fluid">
       <!-- Header -->
       <div class="row">
-        <h1 class="my-3 text-center w-100">Welcome To TicTacToe</h1>
+        <h1 class="my-3 text-center w-100">Welcome to Tic-Tac-Toe</h1>
       </div>
       <!-- Body Content -->
       <div class="row">
         <div class="col-md-3">
           <div class="card">
             <div class="card-body">
-              <p class="card-text">Player #1 It's Your turn...</p>
-              <p class="card-text">Player #1 WINS</p>
+              <p class="card-text" id="turn-checker">Player #1 It's Your turn...</p>
+              <p class="card-text" id="game-winner">Player #1 WINS</p>
             </div>
           </div>
         </div>
@@ -32,32 +32,32 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body tic-grid">
-                <div class="cell">1</div>
-                <div class="cell">2</div>
-                <div class="cell">3</div>
-                <div class="cell">4</div>
-                <div class="cell">5</div>
-                <div class="cell">6</div>
-                <div class="cell">7</div>
-                <div class="cell">8</div>
-                <div class="cell">9</div>
+                <div class="cell" data-cell="0" data-tri="false" data-player="">1</div>
+                <div class="cell" data-cell="1" data-tri="false" data-player="">2</div>
+                <div class="cell" data-cell="2" data-tri="false" data-player="">3</div>
+                <div class="cell" data-cell="3" data-tri="false" data-player="">4</div>
+                <div class="cell" data-cell="4" data-tri="false" data-player="">5</div>
+                <div class="cell" data-cell="5" data-tri="false" data-player="">6</div>
+                <div class="cell" data-cell="6" data-tri="false" data-player="">7</div>
+                <div class="cell" data-cell="7" data-tri="false" data-player="">8</div>
+                <div class="cell" data-cell="8" data-tri="false" data-player="">9</div>
             </div>
-          </div>          
+          </div>
         </div>
 
         <div class="col-md-3">
-          <div class="game-buttons mb-4">
-            <button class="btn btn-primary btn-lg">Start </button>
-            <button class="btn btn-primary btn-lg">Reset </button>
+          <div class="game-buttons mb-4 d-flex w-100 justify-content-around">
+            <button id="start" class="btn btn-outline-success btn-lg">Start</button>
+            <button id="reset" class="btn btn-outline-danger btn-lg">Reset</button>
           </div>
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">STATS</h5>
-              <p class="card-text">Player #1: name</p>
+              <h5 class="card-title text-center stats-title">STATS</h5>
+              <p class="card-text text-center">Player #1: name</p>
               <p class="card-text">Wins</p>
               <hr/>
-              <p class="card-text">Player #2: name</p>
+              <p class="card-text text-center">Player #2: name</p>
               <p class="card-text">Lost</p>
             </div>
           </div>
@@ -68,4 +68,6 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="./js/dom.js" defer></script>
+  <script src="./js/logic.js" defer></script>
 </html>

@@ -5,13 +5,22 @@
 }
 
 .cell {
+  display: flex;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 30px;
   text-align: center;
+  min-height: 180px;
+  min-width: 180px;
+  align-items: center;
+  justify-content: center;
 }
 
+.stats-title {
+  font-weight: 700;
+  text-decoration: underline;
+}
 .cell:nth-child(1) {
   border-top: none;
   border-left: none;
