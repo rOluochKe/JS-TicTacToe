@@ -1,80 +1,77 @@
 // variables
 
 const cells = document.getElementsByClassName('cell');
+const cellsArr = [...cells]
 const reset = document.getElementById('reset');
 const start = document.getElementById('start');
-const grid = document.querySelector('.tic-grid');
-
-var clickCounter = 0;
-
 const turn = document.getElementById('turn-checker');
 const gameWinner = document.getElementById('game-winner');
 
+const winCombinations = [[0, 1, 2],
+[3, 4, 5],
+[6, 7, 8],
+[0, 3, 6],
+[1, 4, 7],
+[2, 5, 8],
+[0, 4, 8],
+[2, 4, 6]]
 
+let xTurn = true;
 // Event listeners
 
-document.addEventListener('DOMContentLoaded', startGame);
 reset.addEventListener('click', resetGame)
 start.addEventListener('click', startGame)
-grid.addEventListener('click', () => {
-    if (clickCounter % 2 !== 0) {
-        printCross()
-    } else {
-        printCircle()
-    }
-});
-
 
 
 // functions
 
 function startGame () {
-    clickCounter = 0;
     start.disabled = true;
-    Array.prototype.forEach.call(cells, (cell) => {
+    cellsArr.forEach((cell) => {
         cell.innerHTML = '';
-        cell.dataset.tri = 'false';
+        cell.addEventListener('click', () => {
+            cell.dataset.tri = 'true'
+            if (xTurn) {
+                cell.dataset.player = '1';
+                cell.innerHTML = '<i class="fas fa-3x fa-times"></i>';
+                turn.innerHTML = "Player #2 it's your turn"
+            } else {
+                cell.dataset.player = '2';
+                cell.innerHTML = '<i class="far fa-3x fa-circle"></i>';
+                turn.innerHTML = "Player #1 it's your turn"
+            }
+            turnSwap()
+            winCheck()
+        }, {once: true});
     });
-    printCross()
 }
 
 function resetGame () {
-    clickCounter = 0;
-    start.disabled = false;
-    Array.prototype.forEach.call(cells, (cell) => {
-        cell.innerHTML = '';
-        cell.dataset.tri = 'false';
-    });
-    printCross()
+   location.reload();
 }
 
-function printCross () {
-    start.disabled = true;
-    turn.innerHTML = "Player #1 it's your turn";
-    Array.prototype.forEach.call(cells, (cell) => {
-        if (cell.dataset.tri === 'false') {
-            cell.addEventListener('click', () => {
-                cell.dataset.tri = 'true';
-                cell.dataset.player = '1';
-                cell.innerHTML = '<i class="fas fa-3x fa-times"></i>';
-                clickCounter += 1;
-            });
-        }
-    });
-    console.log(clickCounter);
+function turnSwap () {
+    xTurn = !xTurn;
 }
 
-function printCircle () {
-    turn.innerHTML = "Player #2 it's your turn";
-    Array.prototype.forEach.call(cells, (cell) => {
-        if (cell.dataset.tri === 'false') {
-            cell.addEventListener('click', () => {
-                cell.dataset.tri = 'true';
-                cell.dataset.player = '2';
-                cell.innerHTML = '<i class="far fa-3x fa-circle"></i>';
-                clickCounter += 1;
-            });
-        }
+function winCheck () {
+    let playerWinner1 = winCombinations.some( combination => {
+        return combination.every( index => {
+            return cellsArr[index].dataset.player === '1'
+        })
     });
-    console.log(clickCounter);
+    let playerWinner2 = winCombinations.some( combination => {
+        return combination.every( index => {
+            return cellsArr[index].dataset.player === '2'
+        })
+    });
+    if (playerWinner1) {
+        gameWinner.innerHTML = 'Player 1 won the game';
+        cellsArr.forEach(cell => { cell.style.pointerEvents = 'none'; });
+    } else if (playerWinner2) {
+        gameWinner.innerHTML = 'Player 2 won the game';
+        cellsArr.forEach(cell => { cell.style.pointerEvents = 'none'; });
+    } else if (cellsArr.every(cell => { return cell.dataset.tri === 'true'})) {
+        gameWinner.innerHTML = 'Draw game';
+    }
 }
