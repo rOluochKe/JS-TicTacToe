@@ -13,11 +13,15 @@
     <title>TicTacToe JavaScript Game</title>
   </head>
   <body>
+
     <main class="container-fluid">
       <!-- Header -->
       <div class="row">
         <h1 class="my-3 text-center w-100">Welcome to Tic-Tac-Toe</h1>
       </div>
+
+      <div id="mainContainer">
+
       <!-- Body Content -->
       <div class="row">
         <div class="col-md-3">
@@ -47,7 +51,7 @@
 
         <div class="col-md-3">
           <div class="game-buttons mb-4 d-flex w-100 justify-content-around">
-            <button id="start" class="btn btn-outline-success btn-lg">Start</button>
+            <button id="start" class="btn btn-outline-success btn-lg" data-toggle="modal" data-target="#bAddPlayerName">Start</button>
             <button id="reset" class="btn btn-outline-danger btn-lg">Reset</button>
           </div>
 
@@ -62,6 +66,46 @@
             </div>
           </div>
         </div>
+
+      <!-- Ask Player names modal -->
+      <div class="modal fade" id="bAddPlayerName" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add Player Names</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="pForm">
+                    <div class="form-group">
+                      <label for="title">Player One Name:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter your name"
+                        id="pOneName"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="title">Player Two Name:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter your name"
+                        id="pTwoName"
+                      />
+                    </div>
+                    
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Name</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>        
+      </div>
       </div>
     </main>
   </body>

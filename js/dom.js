@@ -6,6 +6,9 @@ const reset = document.getElementById('reset');
 const start = document.getElementById('start');
 const turn = document.getElementById('turn-checker');
 const gameWinner = document.getElementById('game-winner');
+const pOneName = document.getElementById('pOneName').value
+const pTwoName = document.getElementById('pTwoName').value
+const mainContainer = document.getElementById('mainContainer')
 
 const winCombinations = [[0, 1, 2],
 [3, 4, 5],
@@ -20,7 +23,15 @@ let xTurn = true;
 // Event listeners
 
 reset.addEventListener('click', resetGame)
-start.addEventListener('click', startGame)
+pForm.addEventListener('submit', function () {
+    if (validateEmptiness(pOneName, pTwoName)) {
+        startGame();
+        
+    }
+    console.log(pOneName, pTwoName);
+    // Jquery for modal
+    $('#bAddPlayerName').modal('toggle');
+});
 
 
 // functions
@@ -74,4 +85,21 @@ function winCheck () {
     } else if (cellsArr.every(cell => { return cell.dataset.tri === 'true'})) {
         gameWinner.innerHTML = 'Draw game';
     }
+}
+
+// Validating player names
+function validateEmptiness(pOneName, pTwoName) {
+    let enable = false;
+    if ( pOneName !== '' && pTwoName !== '' ) {
+      enable = true;
+    } else {
+      const divNode = document.createElement('div');
+      divNode.classList.add('message');
+      divNode.innerHTML = 'Please fill the all fields';
+      mainContainer.appendChild(divNode);
+      setTimeout(() => {
+        mainContainer.removeChild(divNode);
+      }, 3000);
+    }
+    return enable;
 }
