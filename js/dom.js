@@ -2,7 +2,6 @@
 /* eslint-disable no-use-before-define */
 
 // variables
-
 const cells = document.getElementsByClassName('cell');
 const cellsArr = [...cells];
 const reset = document.getElementById('reset');
@@ -10,30 +9,8 @@ const start = document.getElementById('start');
 const turn = document.getElementById('turn-checker');
 const gameWinner = document.getElementById('game-winner');
 const mainContainer = document.getElementById('mainContainer');
-const winCombinations = [[0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]];
-
-let xTurn = true;
-// let players = [];
-const players = getPlayersLS();
-
-// Objects
-
-class Player {
-  constructor(pName, pWins) {
-    this.pName = pName;
-    this.pWins = pWins;
-  }
-}
 
 // Event listeners
-
 reset.addEventListener('click', resetGame);
 document.addEventListener('submit', () => {
   const pOneName = document.getElementById('pOne').value;
@@ -68,7 +45,6 @@ document.addEventListener('submit', () => {
 
 
 // functions
-
 function startGame() {
   start.disabled = true;
   cellsArr.forEach((cell) => {
@@ -85,40 +61,31 @@ function startGame() {
         turn.innerHTML = `${player1.pName} it's your turn`;
       }
       turnSwap();
-      winCheck();
+      showWinner(winCheck()[0], winCheck()[1]);
     }, { once: true });
   });
 }
 
-function resetGame() {
-  window.location.reload();
-}
-
-function turnSwap() {
-  xTurn = !xTurn;
-}
-
-function winCheck() {
-  const playerWinner1 = winCombinations.some(combination => combination.every(index => cellsArr[index].dataset.player === '1'));
-  const playerWinner2 = winCombinations.some(combination => combination.every(index => cellsArr[index].dataset.player === '2'));
-  if (playerWinner1) {
-    turn.innerText = '';
-    gameWinner.innerHTML = `Congrats! ${player1.pName}, you won the game!`;
-    players[players.findIndex(player => player.pName === player1.pName)].pWins += 1;
-    updatePlayerStats(players);
-    showScore();
-    cellsArr.forEach(cell => { cell.style.pointerEvents = 'none'; });
-  } else if (playerWinner2) {
-    turn.innerText = '';
-    gameWinner.innerHTML = `Congrats! ${player2.pName}, you won the game!`;
-    players[players.findIndex(player => player.pName === player2.pName)].pWins += 1;
-    updatePlayerStats(players);
-    showScore();
-    cellsArr.forEach(cell => { cell.style.pointerEvents = 'none'; });
-  } else if (cellsArr.every(cell => cell.dataset.tri === 'true')) {
+// Show winner
+function showWinner (playerWinner1, playerWinner2) {
+if (playerWinner1) {
+    playerWins(player1)
+    } else if (playerWinner2) {
+    playerWins(player2)
+    } else if (cellsArr.every(cell => cell.dataset.tri === 'true')) {
     turn.innerText = '';
     gameWinner.innerHTML = "It's a draw!";
-  }
+    }
+}
+
+// Get player winnings
+function playerWins (player) {
+    turn.innerText = '';
+    gameWinner.innerHTML = `Congrats! ${player.pName}, you won the game!`;
+    players[players.findIndex(playerArr => playerArr.pName === player.pName)].pWins += 1;
+    updatePlayerStats(players);
+    showScore();
+    cellsArr.forEach(cell => { cell.style.pointerEvents = 'none'; });
 }
 
 // Validating player names
@@ -138,22 +105,7 @@ function validateEmptiness(stringOne, stringTwo) {
   return enable;
 }
 
-function getPlayersLS() {
-  let playersArr;
-
-  if (localStorage.getItem('players') === null) {
-    playersArr = [];
-  } else {
-    playersArr = JSON.parse(localStorage.getItem('players'));
-  }
-  return playersArr;
-}
-
-function updatePlayerStats(players) {
-  localStorage.setItem('players', JSON.stringify([]));
-  localStorage.setItem('players', JSON.stringify(players));
-}
-
+// Showing players scores
 function showScore() {
   document.getElementById('pOneWins').innerText = `Wins: ${player1.pWins}`;
   document.getElementById('pTwoWins').innerText = `Wins: ${player2.pWins}`;
