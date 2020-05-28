@@ -1,3 +1,11 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+
+// let players = [];
+const players = getPlayersLS();
+// turn
+let xTurn = true;
 // Winning combinations
 const winCombinations = [[0, 1, 2],
   [3, 4, 5],
@@ -8,24 +16,19 @@ const winCombinations = [[0, 1, 2],
   [0, 4, 8],
   [2, 4, 6]];
 
-let xTurn = true;
-
-// let players = [];
-const players = getPlayersLS();
 
 // Player objects
-class Player {
-  constructor(pName, pWins) {
-    this.pName = pName;
-    this.pWins = pWins;
-  }
-}
+const Player = (name, wins) => {
+  const pName = name;
+  const pWins = wins;
+  return { pName, pWins };
+};
 
 // Check for winnings
 function winCheck() {
   const playerWinner1 = winCombinations.some(combination => combination.every(index => cellsArr[index].dataset.player === '1'));
   const playerWinner2 = winCombinations.some(combination => combination.every(index => cellsArr[index].dataset.player === '2'));
-  return [playerWinner1, playerWinner2]
+  return [playerWinner1, playerWinner2];
 }
 
 // Reset play

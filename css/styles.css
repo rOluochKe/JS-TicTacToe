@@ -1,7 +1,7 @@
 .tic-grid {
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 10px
+  padding: 10px;
 }
 
 .cell {
@@ -16,6 +16,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.cell:hover {
+  cursor: pointer;
+  background-color: lightgrey;
 }
 
 .stats-title {
