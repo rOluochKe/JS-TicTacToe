@@ -1,5 +1,9 @@
 # JS TicTacToe [Live Link](#)
+
 - JavaScript
+
+![sample](images/sample.png)
+
 ## Usage
 > Clone the repository to your local machine using ssh:
 ```
@@ -17,8 +21,13 @@ $ cd JS-TicTacToe
 
 
 ## Functionalities
-- Add, update and delete books to your library
-- Empty Fields Validations
+- The classic Tic Tac Toe game that all have played.
+- Added players custom names
+- Added players name validations
+- Added players scores history
+- Added reset functionality
+- Added local storage functionality for score history
+- Added turn notifier
 - Vanilla Javascript
 - Bootstrap user friendly interface
 
