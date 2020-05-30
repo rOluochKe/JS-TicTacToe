@@ -1,0 +1,25 @@
+{
+  "name": "JS-TicTacToe",
+  "version": "1.0.0",
+  "description": "- JavaScript ## Usage > Clone the repository to your local machine using ssh: ``` $ git clone git@github.com:rOluochKe/JS-TicTacToe.git ``` > Clone the repository to your local machine using https: ``` $ git clone https://github.com/rOluochKe/JS-TicTacToe.git ``` > cd into the directory ``` $ cd JS-TicTacToe ``` > Run Server Locally",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rOluochKe/JS-TicTacToe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rOluochKe/JS-TicTacToe/issues"
+  },
+  "homepage": "https://github.com/rOluochKe/JS-TicTacToe#readme",
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  }
+}

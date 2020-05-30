@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="./css/styles.css" />
-    <link rel="stylesheet" href="./css/reset.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -13,18 +12,22 @@
     <title>TicTacToe JavaScript Game</title>
   </head>
   <body>
+
     <main class="container-fluid">
       <!-- Header -->
       <div class="row">
-        <h1 class="my-3 text-center w-100">Welcome To TicTacToe</h1>
+        <h1 class="my-3 text-center w-100">Tic-Tac-Toe</h1>
       </div>
+
+      <div id="mainContainer">
+
       <!-- Body Content -->
       <div class="row">
         <div class="col-md-3">
           <div class="card">
-            <div class="card-body">
-              <p class="card-text">Player #1 It's Your turn...</p>
-              <p class="card-text">Player #1 WINS</p>
+            <div class="card-body text-center">
+              <p class="card-text" id="turn-checker"></p>
+              <p class="card-text" id="game-winner"></p>
             </div>
           </div>
         </div>
@@ -32,40 +35,82 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body tic-grid">
-                <div class="cell">1</div>
-                <div class="cell">2</div>
-                <div class="cell">3</div>
-                <div class="cell">4</div>
-                <div class="cell">5</div>
-                <div class="cell">6</div>
-                <div class="cell">7</div>
-                <div class="cell">8</div>
-                <div class="cell">9</div>
+                <div class="cell" data-cell="0" data-tri="false" data-player=""><i class="far fa-3x fa-circle"></i></div>
+                <div class="cell" data-cell="1" data-tri="false" data-player=""><i class="fas fa-3x fa-times"></i></div>
+                <div class="cell" data-cell="2" data-tri="false" data-player=""><i class="far fa-3x fa-circle"></i></div>
+                <div class="cell" data-cell="3" data-tri="false" data-player=""><i class="fas fa-3x fa-times"></i></div>
+                <div class="cell" data-cell="4" data-tri="false" data-player=""><i class="fas fa-3x fa-times"></i></div>
+                <div class="cell" data-cell="5" data-tri="false" data-player=""><i class="fas fa-3x fa-times"></i></div>
+                <div class="cell" data-cell="6" data-tri="false" data-player=""><i class="far fa-3x fa-circle"></i></div>
+                <div class="cell" data-cell="7" data-tri="false" data-player=""><i class="fas fa-3x fa-times"></i></div>
+                <div class="cell" data-cell="8" data-tri="false" data-player=""><i class="far fa-3x fa-circle"></i></div>
             </div>
-          </div>          
+          </div>
         </div>
 
         <div class="col-md-3">
-          <div class="game-buttons mb-4">
-            <button class="btn btn-primary btn-lg">Start </button>
-            <button class="btn btn-primary btn-lg">Reset </button>
+          <div class="game-buttons mb-4 d-flex w-100 justify-content-around">
+            <button id="start" class="btn btn-outline-success btn-lg" data-toggle="modal" data-target="#bAddPlayerName">Start</button>
+            <button id="reset" class="btn btn-outline-danger btn-lg">Reset</button>
           </div>
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">STATS</h5>
-              <p class="card-text">Player #1: name</p>
-              <p class="card-text">Wins</p>
+              <h5 class="card-title text-center stats-title">STATS</h5>
+              <div class="text-center"></div>
+              <p id="pOneStats" class="card-text"></p>
+              <p id="pOneWins" class="card-text text-center"></p>
               <hr/>
-              <p class="card-text">Player #2: name</p>
-              <p class="card-text">Lost</p>
+              <p id="pTwoStats" class="card-text"></p>
+              <p id="pTwoWins" class="card-text text-center"></p>
             </div>
           </div>
         </div>
+
+      <!-- Ask Player names modal -->
+      <div class="modal fade" id="bAddPlayerName" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add Player Names</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="pForm">
+                    <div class="form-group">
+                      <label for="title">Player One Name:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter your name"
+                        id="pOne"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="title">Player Two Name:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter your name"
+                        id="pTwo"
+                      />
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Name</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
       </div>
     </main>
   </body>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="./js/logic.js" defer></script>
+  <script src="./js/dom.js" defer></script>
 </html>
