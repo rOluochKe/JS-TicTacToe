@@ -1,5 +1,5 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
+const cells = document.getElementsByClassName('cell');
+const cellsArr = [...cells];
 
 const Player = (name, wins) => {
   const pName = name;
@@ -39,10 +39,12 @@ const Game = () => {
   };
 
   return {
-    players, updatePlayerStats, turnSwap, winCheck,
+    players, updatePlayerStats, turnSwap, winCheck, winCombinations,
   };
 };
 
 const resetGame = () => {
   window.location.reload();
 };
+
+export { Player, Game, resetGame };

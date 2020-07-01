@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
+import { Player, Game, resetGame } from './logic';
 
 const cells = document.getElementsByClassName('cell');
 const cellsArr = [...cells];
@@ -117,5 +116,6 @@ document.addEventListener('submit', () => {
     board.startGame(player1, player2);
   }
 
+  // eslint-disable-next-line no-undef
   $('#bAddPlayerName').modal('toggle');
 });
