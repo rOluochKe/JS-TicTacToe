@@ -108,4 +108,4 @@ dist
 index.pug*
 .history/
 
-.vscode
+.vscode/

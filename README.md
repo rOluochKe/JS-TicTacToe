@@ -32,5 +32,5 @@ $ cd JS-TicTacToe
 - Bootstrap user friendly interface
 
 ## Designed and developed by
-[Raymond Oluoch](https://github.com/rOluochKe)
-[Leonardo Mezu](https://github.com/leonmezu1)
+- [Raymond Oluoch](https://github.com/rOluochKe)
+- [Leonardo Mezu](https://github.com/leonmezu1)
