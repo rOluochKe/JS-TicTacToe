@@ -27,3 +27,44 @@ test('The game should have 8 winning combinations', () => {
 test('The game should start with the turn attribute settled in true', () => {
   expect(Logic.Game().turnSwap()).toBe(true);
 });
+
+test('One win combination should be the first row', () => {
+  expect(Logic.Game().winCombinations.some(
+    combination => combination.every(i => [0, 1, 2].includes(i)),
+  )).toBe(true);
+});
+test('One win combination should be the second row', () => {
+  expect(Logic.Game().winCombinations.some(
+    combination => combination.every(i => [3, 4, 5].includes(i)),
+  )).toBe(true);
+});
+test('One win combination should be the third row', () => {
+  expect(Logic.Game().winCombinations.some(
+    combination => combination.every(i => [6, 7, 8].includes(i)),
+  )).toBe(true);
+});
+test('One win combination should be the first column', () => {
+  expect(Logic.Game().winCombinations.some(
+    combination => combination.every(i => [0, 3, 6].includes(i)),
+  )).toBe(true);
+});
+test('One win combination should be the second column', () => {
+  expect(Logic.Game().winCombinations.some(
+    combination => combination.every(i => [1, 4, 7].includes(i)),
+  )).toBe(true);
+});
+test('One win combination should be the third column', () => {
+  expect(Logic.Game().winCombinations.some(
+    combination => combination.every(i => [2, 5, 8].includes(i)),
+  )).toBe(true);
+});
+test('One win combination should be the main diagonal', () => {
+  expect(Logic.Game().winCombinations.some(
+    combination => combination.every(i => [0, 4, 8].includes(i)),
+  )).toBe(true);
+});
+test('One win combination should be the inverse diagonal', () => {
+  expect(Logic.Game().winCombinations.some(
+    combination => combination.every(i => [2, 4, 6].includes(i)),
+  )).toBe(true);
+});
