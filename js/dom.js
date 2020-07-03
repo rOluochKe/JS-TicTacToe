@@ -1,9 +1,7 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
+import { Player, Game } from './logic';
 
 const cells = document.getElementsByClassName('cell');
 const cellsArr = [...cells];
-const reset = document.getElementById('reset');
 const start = document.getElementById('start');
 const turn = document.getElementById('turn-checker');
 const gameWinner = document.getElementById('game-winner');
@@ -63,7 +61,7 @@ const Board = (p1, p2, g) => {
   };
 
   return {
-    startGame, showScore,
+    startGame, showScore, player1, player2, game,
   };
 };
 
@@ -84,7 +82,6 @@ const validateEmptiness = (stringOne, stringTwo) => {
   return enable;
 };
 
-reset.addEventListener('click', resetGame);
 document.addEventListener('submit', () => {
   const pOneName = document.getElementById('pOne').value;
   const pTwoName = document.getElementById('pTwo').value;
@@ -117,5 +114,8 @@ document.addEventListener('submit', () => {
     board.startGame(player1, player2);
   }
 
+  // eslint-disable-next-line no-undef
   $('#bAddPlayerName').modal('toggle');
 });
+
+export { Board, validateEmptiness };
